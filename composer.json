@@ -1,0 +1,47 @@
+{
+    "name": "mblsolutions/notification",
+    "description": "Notification package for Laravel applications",
+    "type": "package",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "MBL Solutions Ltd",
+            "email": "tech@mblsolutions.co.uk"
+        }
+    ],
+    "require": {
+        "php": "^8.1|^8.2",
+        "ext-json": "*",
+        "illuminate/contracts": "^10.0|^11.0",
+        "illuminate/events": "^10.0|^11.0",
+        "illuminate/database": "^10.0|^11.0",
+        "illuminate/support": "^10.0|^11.0",
+        "lerouse/laravel-repository": "^2.0",
+        "guzzlehttp/guzzle": "*"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "orchestra/testbench": "^8.0||^9.0",
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^10.0||^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MBLSolutions\\Notification\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MBLSolutions\\Notification\\Tests\\": "tests"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MBLSolutions\\Notification\\NotificationServiceProvider"
+            ]
+        }
+    }
+}
