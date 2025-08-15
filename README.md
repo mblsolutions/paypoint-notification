@@ -1,13 +1,13 @@
-# Notification
+# PayPoint Notification
 
-Notification for Laravel projects
+PayPoint notification package
 
 ## Installation
 
 The recommended method to install LaravelRepository is with composer
 
 ```bash
-php composer require mblsolutions/notification
+php composer require mblsolutions/paypoint-notification
 ```
 ### Laravel without auto-discovery
 
@@ -33,7 +33,7 @@ If you would like to use the Database driver to store your notification logs, yo
 driver migration.
 
 ```bash
-php artisan notification:database:table
+php artisan paypoint-notification:database:table
 ```
 
 This will create a new migration in `database/migrations`, after creating this migration run the database migrations to

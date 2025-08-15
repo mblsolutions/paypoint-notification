@@ -38,7 +38,7 @@ return [
      |
      */
 
-    'timeout' => env('NOTIFICATION_TIMEOUT', 5.0),
+    'timeout' => env('NOTIFICATION_TIMEOUT', 5),
 
     /*
      |--------------------------------------------------------------------------

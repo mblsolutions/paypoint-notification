@@ -14,7 +14,7 @@ class CreateNotificationLogsTableCommand extends Command
      *
      * @var string
      */
-    protected $name = 'notification:database:table';
+    protected $name = 'paypoint-notification:database:table';
 
     /**
      * The console command description.

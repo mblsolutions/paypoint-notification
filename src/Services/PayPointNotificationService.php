@@ -64,8 +64,10 @@ class PayPointNotificationService
         // Check if the original message is an instance of the specific Email class
         if ($originalMessage instanceof Email) {
             
+            $headers = $originalMessage->getHeaders();
+
             // Get the template Id from Custom header
-            $templateIdHeader = $originalMessage->getHeaders()->get('X-Template-Id');
+            $templateIdHeader = $headers->get('X-Template-Id');
             if (!$templateIdHeader){
                 // Handle the case where the template id not in message header
                 throw new MailException('Missing X-Template-Id in message header received by PayPointNotificationService');
@@ -73,7 +75,7 @@ class PayPointNotificationService
             $templateId = $templateIdHeader->getBody();
             
             // Get the template request body from custom header
-            $requestBodyHeader = $originalMessage->getHeaders()->get('X-Request-Body');
+            $requestBodyHeader = $headers->get('X-Request-Body');
             if (!$requestBodyHeader){
                 // Handle the case where the request body not in message header
                 throw new MailException('Missing X-Request-Body in message header received by PayPointNotificationService');

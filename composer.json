@@ -1,6 +1,6 @@
 {
-    "name": "mblsolutions/notification",
-    "description": "Notification package for Laravel applications",
+    "name": "mblsolutions/paypoint-notification",
+    "description": "PayPoint Notification package",
     "type": "package",
     "license": "proprietary",
     "authors": [
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^8.1|^8.2",
+        "php": "^8.1",
         "ext-json": "*",
         "illuminate/contracts": "^10.0|^11.0",
         "illuminate/events": "^10.0|^11.0",

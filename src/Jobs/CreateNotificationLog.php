@@ -123,7 +123,7 @@ class CreateNotificationLog implements ShouldQueue
     protected function handleBodyContentIfJson($content): ?string
     {
         if ($this->isJson($content)) {            
-            return $this->convertDataToJson($content);
+            return encrypt($this->convertDataToJson($content));
         }
 
         return null;
