@@ -94,7 +94,7 @@ class CreateNotificationLogsTableCommand extends Command
         $stub = str_replace(
             ['{{table}}', '{{tableClassName}}'],
             [$table, $tableClassName],
-            $this->files->get(__DIR__.'/stubs/notification_logs.stub')
+            $this->files->get(__DIR__.'/stubs/notification_logs.php')
         );
 
         $this->files->put($path, $stub);

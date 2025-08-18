@@ -92,9 +92,15 @@ class PayPointNotificationService
         $this->validateRequestBody($templateId,$requestBody);
         
         $request = new Request('POST','request',$this->headers, $requestBody);
-        $response = $this->http->send($request,[
-            'query' => $param,
-        ]);
+        try{
+            $response = $this->http->send($request,[
+                'query' => $param,
+            ]);
+        }catch (\GuzzleHttp\Exception\ClientException $e) {
+            // Handle the exception and log it
+            dispatch(new CreateNotificationLog($templateId,$request,$e->getResponse()));            
+            throw new MailException('Error sending request to PayPoint Notification API', 0, $e);
+        }
         
         dispatch(new CreateNotificationLog($templateId,$request,$response));
     }

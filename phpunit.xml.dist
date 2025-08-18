@@ -23,5 +23,7 @@
         <server name="DB_CONNECTION" value="sqlite"/>
         <server name="DB_DATABASE" value=":memory:"/>
         <server name="TEMPLATE_ID" value="373c1fa4-2d9c-4a25-afb5-ffb21c537d85"/>
+        <server name="PP_NOTIFICATION_endpoint" value="http://test.pp.com/v1"/>
+        <server name="PP_NOTIFICATION_SUBSCRIPTION_KEY" value="test-subscription-key"/>
     </php>
 </phpunit>
