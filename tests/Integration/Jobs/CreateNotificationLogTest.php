@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Config;
 use MBLSolutions\Notification\Http\Request;
 use MBLSolutions\Notification\Tests\LaravelTestCase;
 use MBLSolutions\Notification\Jobs\CreateNotificationLog;
+use PHPUnit\Util\Test;
 
 class CreateNotificationLogTest extends LaravelTestCase
 {
@@ -28,8 +29,8 @@ class CreateNotificationLogTest extends LaravelTestCase
         parent::tearDown();
     }
 
-    /** @test **/
-    public function can_log_paypoint_notification_in_database(): void
+    #[Test]
+    public function test_successful_logging_paypoint_notification_in_database(): void
     {
         $requestBody = json_encode([
                             'Model' =>

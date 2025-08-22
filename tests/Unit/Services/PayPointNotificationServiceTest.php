@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Validation\ValidationException;
 use MBLSolutions\Notification\Exception\MailException;
 use MBLSolutions\Notification\Jobs\CreateNotificationLog;
-use MBLSolutions\Notification\Message\PayPointMailMessage;
 use MBLSolutions\Notification\Services\PayPointNotificationService;
 use MBLSolutions\Notification\Tests\LaravelTestCase;
+use PHPUnit\Util\Test;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\SentMessage;
 use Symfony\Component\Mime\Header\Headers;
@@ -70,8 +70,8 @@ class PayPointNotificationServiceTest extends LaravelTestCase
         $boundSetter();  
     }
 
-    /** @test **/
-    public function can_send_paypoint_notification(): void
+    #[Test]
+    public function test_successful_send_out_paypoint_notification(): void
     {
         Queue::fake();
         $this->createMockPaypointNotificationService(
@@ -126,8 +126,8 @@ class PayPointNotificationServiceTest extends LaravelTestCase
         });
     }
     
-    /** @test **/
-    public function cannot_send_paypoint_notification_with_invalid_templateId(): void
+    #[Test]
+    public function test_failing_send_out_paypoint_notification_with_invalid_templateId(): void
     {
         $this->createMockPaypointNotificationService(
             env('PP_NOTIFICATION_endpoint'),
@@ -179,8 +179,8 @@ class PayPointNotificationServiceTest extends LaravelTestCase
         $this->assertTrue(true);
     }
 
-    /** @test **/
-    public function cannot_send_paypoint_notification_with_invalid_request_body_format(): void
+    #[Test]
+    public function test_failing_send_out_paypoint_notification_with_invalid_request_body_format(): void
     {
         $this->expectException(MailException::class);
         $this->expectExceptionMessage('No request body received by PayPointNotificationService');
@@ -209,8 +209,8 @@ class PayPointNotificationServiceTest extends LaravelTestCase
         
     }
 
-    /** @test **/
-    public function cannot_send_paypoint_notification_with_failed_validation_on_request_body(): void
+    #[Test]
+    public function test_failing_send_out_paypoint_notification_with_failed_validation_on_request_body(): void
     {
         Config::set('notification.template', [
             'default_id' => env('TEMPLATE_ID'),
@@ -270,8 +270,8 @@ class PayPointNotificationServiceTest extends LaravelTestCase
         $this->payPointNotificationService->send($this->mockSentMessage);
     }
 
-    /** @test **/
-    public function cannot_send_paypoint_notification_without_templateId_in_email_header(): void
+    #[Test]
+    public function test_failing_send_out_paypoint_notification_without_templateId_in_email_header(): void
     {
         $this->expectException(MailException::class);
         $this->expectExceptionMessage('Missing X-Template-Id in message header received by PayPointNotificationService');
@@ -297,8 +297,8 @@ class PayPointNotificationServiceTest extends LaravelTestCase
         $this->payPointNotificationService->send($this->mockSentMessage);
     }
 
-    /** @test **/
-    public function cannot_send_paypoint_notification_without_request_body_in_email_header(): void
+    #[Test]
+    public function test_failing_send_out_paypoint_notification_without_request_body_in_email_header(): void
     {
         $this->expectException(MailException::class);
         $this->expectExceptionMessage('Missing X-Request-Body in message header received by PayPointNotificationService');
@@ -325,8 +325,8 @@ class PayPointNotificationServiceTest extends LaravelTestCase
         $this->payPointNotificationService->send($this->mockSentMessage);
     }
 
-    /** @test **/
-    public function cannot_send_paypoint_notification_with_incorrect_message_type(): void
+    #[Test]
+    public function test_failing_send_out_paypoint_notification_with_incorrect_message_type(): void
     {
         $this->expectException(MailException::class);
         $this->expectExceptionMessage('Unsupported message type received by PayPointNotificationService');
@@ -348,8 +348,8 @@ class PayPointNotificationServiceTest extends LaravelTestCase
         $this->payPointNotificationService->send($this->mockSentMessage);
     }
 
-    /** @test **/
-    public function handle_error_response_on_invalid_endpoint_from_paypoint_service(): void
+    #[Test]
+    public function test_handling_error_response_on_invalid_endpoint_from_paypoint_service(): void
     {
         $this->expectException(MailException::class);
         $this->expectExceptionMessage('Error sending request to PayPoint Notification API');
@@ -406,8 +406,8 @@ class PayPointNotificationServiceTest extends LaravelTestCase
         ]);
     }
 
-    /** @test **/
-    public function handle_error_response_on_invalid_subscriptionkey_from_paypoint_service(): void
+    #[Test]
+    public function test_handling_error_response_on_invalid_subscriptionkey_from_paypoint_service(): void
     {
         $this->expectException(MailException::class);
         $this->expectExceptionMessage('Error sending request to PayPoint Notification API');
@@ -464,8 +464,8 @@ class PayPointNotificationServiceTest extends LaravelTestCase
         ]);
     }
 
-    /** @test **/
-    public function handle_error_response_on_missing_field_of_request_body_from_paypoint_service(): void
+    #[Test]
+    public function test_handling_error_response_on_missing_field_of_request_body_from_paypoint_service(): void
     {
         $this->expectException(MailException::class);
         $this->expectExceptionMessage('Error sending request to PayPoint Notification API');

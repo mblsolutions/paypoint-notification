@@ -3,6 +3,7 @@
 use GuzzleHttp\Exception\ClientException;
 use MBLSolutions\Notification\Http\Request;
 use MBLSolutions\Notification\Tests\LaravelTestCase;
+use PHPUnit\Util\Test;
 
 class PayPointNotificationApiTest extends LaravelTestCase
 {
@@ -17,8 +18,8 @@ class PayPointNotificationApiTest extends LaravelTestCase
         parent::tearDown();
     }
 
-    /** @test **/
-    public function throws_error_response_on_invalid_endpoint_from_paypoint_service(): void
+    #[Test]
+    public function test_throw_out_error_response_on_invalid_endpoint_from_paypoint_service(): void
     {
         $this->expectException(ClientException::class);
         $this->expectExceptionCode(404); //Invalid endpoint
@@ -37,8 +38,8 @@ class PayPointNotificationApiTest extends LaravelTestCase
         
     }
 
-    /** @test **/
-    public function throws_error_response_on_invalid_subscriptionkey_from_paypoint_service_api(): void
+    #[Test]
+    public function test_throw_out_error_response_on_invalid_subscriptionkey_from_paypoint_service_api(): void
     {
         $this->expectException(ClientException::class);
         $this->expectExceptionCode(401);
@@ -57,8 +58,8 @@ class PayPointNotificationApiTest extends LaravelTestCase
         ]);
     }
 
-    /** @test **/
-    public function throws_error_response_on_missing_field_of_request_body_from_paypoint_service(): void
+    #[Test]
+    public function test_throw_out_error_response_on_missing_field_of_request_body_from_paypoint_service(): void
     {
         $this->expectException(ClientException::class);
         $this->expectExceptionCode(400);
